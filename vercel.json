@@ -1,6 +1,7 @@
 {
   "redirects": [
-    { "source": "/", "destination": "/hub.html" }
+    { "source": "/", "destination": "/hub.html" },
+    { "source": "/hub", "destination": "/hub.html" }
   ],
   "headers": [
     {
