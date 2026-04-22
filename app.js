@@ -11,7 +11,7 @@ const API_BASE = (() => {
     const isLocal = !host || host === 'localhost' || host === '127.0.0.1' || window.location.protocol === 'file:';
     if (isLocal) return 'http://localhost:3001';
     // 배포 후 아래 URL을 Render 백엔드 주소로 교체하세요
-    return window.AIRPOOL_API_BASE || 'https://CHANGE_ME.onrender.com';
+    return window.AIRPOOL_API_BASE || 'https://airpool-backend.onrender.com';
 })();
 
 const AREAS = [
