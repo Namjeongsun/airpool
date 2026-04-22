@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280" />
+  <title>AirPool Admin · 에어풀 운영자 콘솔</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <!-- LOGIN VIEW -->
+  <div id="login-view" class="login-view hidden">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="logo-mark">A</div>
+        <div class="logo-text">
+          <div class="logo-title">AirPool</div>
+          <div class="logo-sub">Operator Console</div>
+        </div>
+      </div>
+      <h1 class="login-title">운영자 로그인</h1>
+      <p class="login-desc">에어풀 백오피스 관리자 전용 페이지입니다.</p>
+      <form id="login-form" class="login-form" autocomplete="off">
+        <label class="field">
+          <span class="field-label">관리자 ID</span>
+          <input type="text" id="login-id" placeholder="admin" autocomplete="off" />
+        </label>
+        <label class="field">
+          <span class="field-label">비밀번호</span>
+          <input type="password" id="login-pw" placeholder="••••••••" />
+        </label>
+        <div id="login-error" class="login-error hidden">ID 또는 비밀번호가 올바르지 않습니다.</div>
+        <button type="submit" class="btn btn-primary btn-block">로그인</button>
+        <div class="login-hint">데모 계정 · <code>admin</code> / <code>admin1234</code></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- APP SHELL -->
+  <div id="app-shell" class="app-shell hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo-mark">A</div>
+        <div>
+          <div class="brand-title">AirPool</div>
+          <div class="brand-sub">Admin</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" id="sidebar-nav">
+        <a class="nav-item" data-section="dashboard" href="#/dashboard">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12L12 4l9 8"/><path d="M5 10v10h14V10"/></svg>
+          </span>
+          <span>홈</span>
+        </a>
+        <a class="nav-item" data-section="verifications" href="#/verifications">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>
+          </span>
+          <span>재직 인증</span>
+          <span class="nav-badge" id="nav-badge-verify">0</span>
+        </a>
+        <a class="nav-item" data-section="users" href="#/users">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+          </span>
+          <span>사용자</span>
+        </a>
+        <a class="nav-item" data-section="rides" href="#/rides">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 17h14l-1.5-6H6.5L5 17z"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/><path d="M7 11V7h10v4"/></svg>
+          </span>
+          <span>합승</span>
+        </a>
+        <a class="nav-item" data-section="reports" href="#/reports">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>
+          </span>
+          <span>신고/분쟁</span>
+        </a>
+        <a class="nav-item" data-section="analytics" href="#/analytics">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V6M10 20v-8M16 20v-5M22 20V10"/></svg>
+          </span>
+          <span>분석</span>
+        </a>
+        <a class="nav-item" data-section="settings" href="#/settings">
+          <span class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 00-.2-1.7l2-1.5-2-3.5-2.4.8a7 7 0 00-3-1.7L13 2h-2l-.4 2.4a7 7 0 00-3 1.7l-2.4-.8-2 3.5 2 1.5A7 7 0 005 12c0 .6.1 1.1.2 1.7l-2 1.5 2 3.5 2.4-.8a7 7 0 003 1.7L11 22h2l.4-2.4a7 7 0 003-1.7l2.4.8 2-3.5-2-1.5c.1-.6.2-1.1.2-1.7z"/></svg>
+          </span>
+          <span>설정</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="admin-chip">
+          <div class="avatar">A</div>
+          <div class="chip-info">
+            <div class="chip-name">admin</div>
+            <div class="chip-role">슈퍼 관리자</div>
+          </div>
+        </div>
+        <button id="btn-logout" class="btn-ghost btn-block">로그아웃</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+
+      <!-- HEADER -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h2 id="page-title" class="page-title">대시보드</h2>
+          <span id="page-sub" class="page-sub">운영 현황 한눈에 보기</span>
+        </div>
+        <div class="topbar-right">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            <input id="global-search" type="text" placeholder="사용자, 사번, 합승 ID 검색..." />
+          </div>
+          <button class="icon-btn" id="btn-notify" title="알림">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 16V11a6 6 0 1112 0v5l2 2H4z"/><path d="M10 21a2 2 0 004 0"/></svg>
+            <span class="notify-badge" id="notify-badge">0</span>
+          </button>
+          <div class="profile-dd" id="profile-dd">
+            <div class="avatar">A</div>
+            <div class="profile-info">
+              <div class="profile-name">admin</div>
+              <div class="profile-email">ledtruff@gmail.com</div>
+            </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><path d="M6 9l6 6 6-6"/></svg>
+            <div class="dd-menu" id="profile-menu">
+              <button class="dd-item">프로필 보기</button>
+              <button class="dd-item">계정 설정</button>
+              <div class="dd-sep"></div>
+              <button class="dd-item dd-danger" id="btn-logout-2">로그아웃</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <main class="content" id="content">
+        <!-- rendered by JS -->
+      </main>
+    </div>
+  </div>
+
+  <!-- MODAL HOST -->
+  <div id="modal-host" class="modal-host hidden"></div>
+
+  <!-- TOASTS -->
+  <div id="toast-host" class="toast-host"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a2540">
+    <meta name="description" content="공항 출근자를 위한 택시 합승 매칭 서비스">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='42' fill='%230a2540'/><text x='96' y='130' font-size='110' text-anchor='middle' fill='white'>%E2%9C%88</text></svg>">
+    <title>에어풀 · 공항 출근 합승</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- ============ 로그인 화면 ============ -->
+        <section id="auth-screen" class="screen active">
+            <div class="auth-wrap">
+                <div class="auth-hero">
+                    <div class="logo-mark">✈</div>
+                    <h1 class="logo-text">에어풀</h1>
+                    <p class="tagline">공항 출근, 혼자 가지 마세요</p>
+                </div>
+
+                <div class="auth-card">
+                    <div class="auth-tabs">
+                        <button type="button" class="auth-tab active" data-mode="login">로그인</button>
+                        <button type="button" class="auth-tab" data-mode="signup">회원가입</button>
+                    </div>
+
+                    <div id="demo-hint" class="demo-hint">
+                        <strong>테스트 계정</strong>
+                        <span>사번 <code>KE10001</code> / 비밀번호 <code>test1234</code></span>
+                    </div>
+
+                    <form id="auth-form">
+                        <!-- 회원가입 전용 필드 -->
+                        <div class="signup-only">
+                            <label>이름
+                                <input type="text" id="auth-name" placeholder="홍길동">
+                            </label>
+                            <label>소속
+                                <select id="auth-company">
+                                    <option value="">선택해주세요</option>
+                                    <optgroup label="항공사">
+                                        <option value="대한항공">대한항공</option>
+                                        <option value="아시아나항공">아시아나항공</option>
+                                        <option value="제주항공">제주항공</option>
+                                        <option value="진에어">진에어</option>
+                                        <option value="티웨이항공">티웨이항공</option>
+                                        <option value="에어부산">에어부산</option>
+                                        <option value="에어서울">에어서울</option>
+                                    </optgroup>
+                                    <optgroup label="공항 근무">
+                                        <option value="인천국제공항공사">인천국제공항공사</option>
+                                        <option value="한국공항공사">한국공항공사</option>
+                                        <option value="지상조업">지상조업사</option>
+                                        <option value="보안검색">보안검색</option>
+                                        <option value="면세점">면세점</option>
+                                        <option value="기타">기타 공항 근무</option>
+                                    </optgroup>
+                                </select>
+                            </label>
+                            <label>직무
+                                <select id="auth-role">
+                                    <option value="">선택해주세요</option>
+                                    <option value="객실승무원">객실승무원</option>
+                                    <option value="조종사">조종사</option>
+                                    <option value="정비">정비</option>
+                                    <option value="운항관리">운항관리</option>
+                                    <option value="지상직">지상직</option>
+                                    <option value="보안검색">보안검색</option>
+                                    <option value="면세점">면세점 직원</option>
+                                    <option value="기타">기타</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <!-- 공통 필드 -->
+                        <label>사번 / 직원번호
+                            <input type="text" id="auth-employee-id" placeholder="예: KE10001" required>
+                        </label>
+
+                        <div class="signup-only">
+                            <label>연락처
+                                <input type="tel" id="auth-phone" placeholder="010-0000-0000">
+                            </label>
+                        </div>
+
+                        <label>비밀번호
+                            <input type="password" id="auth-password" placeholder="4자 이상" required minlength="4">
+                        </label>
+
+                        <div class="verify-notice signup-only">
+                            <span class="verify-icon">🛡</span>
+                            <div>
+                                <strong>재직 인증</strong>
+                                <p>실제 서비스에서는 사원증/재직증명서 업로드 후 관리자 승인이 필요합니다. (데모에서는 자동 승인)</p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary" id="auth-submit">로그인</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 메인 레이아웃 ============ -->
+        <div id="main-layout" class="hidden">
+            <header class="app-header">
+                <div class="header-left">
+                    <span class="logo-mark small">✈</span>
+                    <span class="brand">에어풀</span>
+                </div>
+                <div class="header-right">
+                    <span id="user-chip" class="user-chip"></span>
+                </div>
+            </header>
+
+            <main id="main-content">
+                <!-- 홈 -->
+                <section id="home-screen" class="screen">
+                    <div class="greet">
+                        <h2 id="greet-text">안녕하세요 👋</h2>
+                        <p>오늘도 안전한 비행하세요</p>
+                    </div>
+
+                    <div class="quick-actions">
+                        <button class="quick-card" data-nav="search">
+                            <span class="qc-icon">🔍</span>
+                            <span class="qc-label">합승 찾기</span>
+                            <span class="qc-sub">등록된 합승에 참여</span>
+                        </button>
+                        <button class="quick-card accent" data-nav="create">
+                            <span class="qc-icon">➕</span>
+                            <span class="qc-label">합승 등록</span>
+                            <span class="qc-sub">새로 만들기</span>
+                        </button>
+                    </div>
+
+                    <div class="section-head">
+                        <h3>내 다음 합승</h3>
+                        <button class="link-btn" data-nav="my-rides">전체보기</button>
+                    </div>
+                    <div id="upcoming-rides" class="ride-list"></div>
+
+                    <div class="section-head">
+                        <h3>지금 모집 중</h3>
+                        <button class="link-btn" data-nav="search">더 보기</button>
+                    </div>
+                    <div id="trending-rides" class="ride-list"></div>
+                </section>
+
+                <!-- 검색 -->
+                <section id="search-screen" class="screen">
+                    <div class="page-title">
+                        <h2>합승 찾기</h2>
+                        <p>조건에 맞는 합승을 찾아보세요</p>
+                    </div>
+
+                    <form id="search-form" class="filter-card">
+                        <div class="row-2">
+                            <label>공항
+                                <select id="filter-airport">
+                                    <option value="">전체</option>
+                                    <option value="인천">인천공항</option>
+                                    <option value="김포">김포공항</option>
+                                </select>
+                            </label>
+                            <label>지역
+                                <select id="filter-area">
+                                    <option value="">전체</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="row-2">
+                            <label>날짜
+                                <input type="date" id="filter-date">
+                            </label>
+                            <label>시간대
+                                <select id="filter-time">
+                                    <option value="">전체</option>
+                                    <option value="dawn">새벽 (00:00-06:00)</option>
+                                    <option value="morning">아침 (06:00-12:00)</option>
+                                    <option value="afternoon">오후 (12:00-18:00)</option>
+                                    <option value="evening">저녁/밤 (18:00-24:00)</option>
+                                </select>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-primary">검색</button>
+                    </form>
+
+                    <div class="result-head">
+                        <h3 id="search-count">모든 합승</h3>
+                    </div>
+                    <div id="search-results" class="ride-list"></div>
+                </section>
+
+                <!-- 등록 -->
+                <section id="create-screen" class="screen">
+                    <div class="page-title">
+                        <h2>합승 등록</h2>
+                        <p>같이 탈 사람을 모집해보세요</p>
+                    </div>
+
+                    <form id="create-form" class="form-card">
+                        <fieldset>
+                            <legend>목적지 공항</legend>
+                            <div class="radio-tabs">
+                                <label><input type="radio" name="airport" value="인천" checked><span>인천공항</span></label>
+                                <label><input type="radio" name="airport" value="김포"><span>김포공항</span></label>
+                            </div>
+                        </fieldset>
+
+                        <label id="terminal-field">터미널 (인천만)
+                            <select id="create-terminal">
+                                <option value="">선택 안함</option>
+                                <option value="T1">제1터미널 (T1)</option>
+                                <option value="T2">제2터미널 (T2)</option>
+                            </select>
+                        </label>
+
+                        <div class="row-2">
+                            <label>출발 지역
+                                <select id="create-area" required></select>
+                            </label>
+                            <label>상세 출발지
+                                <input type="text" id="create-detail" placeholder="예: 논현역 6번 출구" required>
+                            </label>
+                        </div>
+
+                        <div class="row-2">
+                            <label>날짜
+                                <input type="date" id="create-date" required>
+                            </label>
+                            <label>출발 시간
+                                <input type="time" id="create-time" required>
+                            </label>
+                        </div>
+
+                        <div class="row-2">
+                            <label>최대 인원
+                                <select id="create-max" required>
+                                    <option value="2">2명 (본인 포함)</option>
+                                    <option value="3" selected>3명 (본인 포함)</option>
+                                    <option value="4">4명 (본인 포함)</option>
+                                </select>
+                            </label>
+                            <label>예상 택시비 (원)
+                                <input type="number" id="create-fare" placeholder="예: 80000" min="0" step="1000" required>
+                            </label>
+                        </div>
+
+                        <label>메모 (선택)
+                            <textarea id="create-note" placeholder="캐리어 크기, 여성전용 선호 등" rows="3"></textarea>
+                        </label>
+
+                        <div class="fare-preview">
+                            <span>1인당 예상 분담액</span>
+                            <strong id="fare-per-person">-</strong>
+                        </div>
+
+                        <button type="submit" class="btn-primary">합승 등록하기</button>
+                    </form>
+                </section>
+
+                <!-- 내 합승 -->
+                <section id="my-rides-screen" class="screen">
+                    <div class="page-title">
+                        <h2>내 합승</h2>
+                        <p>참여 중이거나 모집한 합승</p>
+                    </div>
+                    <div class="tabs">
+                        <button class="tab active" data-tab="upcoming">예정 (<span id="count-upcoming">0</span>)</button>
+                        <button class="tab" data-tab="created">내가 모집 (<span id="count-created">0</span>)</button>
+                        <button class="tab" data-tab="past">지난 합승 (<span id="count-past">0</span>)</button>
+                    </div>
+                    <div id="my-rides-list" class="ride-list"></div>
+                </section>
+
+                <!-- 합승 상세 -->
+                <section id="detail-screen" class="screen">
+                    <button class="back-btn" data-nav="back">← 뒤로</button>
+                    <div id="detail-body"></div>
+                </section>
+
+                <!-- 프로필 -->
+                <section id="profile-screen" class="screen">
+                    <div class="page-title">
+                        <h2>프로필</h2>
+                    </div>
+                    <div id="profile-body" class="form-card"></div>
+                </section>
+            </main>
+
+            <nav class="bottom-nav">
+                <button class="nav-item active" data-nav="home">
+                    <span class="nav-icon">🏠</span><span>홈</span>
+                </button>
+                <button class="nav-item" data-nav="search">
+                    <span class="nav-icon">🔍</span><span>찾기</span>
+                </button>
+                <button class="nav-item create-btn" data-nav="create">
+                    <span class="nav-icon">＋</span><span>등록</span>
+                </button>
+                <button class="nav-item" data-nav="my-rides">
+                    <span class="nav-icon">🎫</span><span>내 합승</span>
+                </button>
+                <button class="nav-item" data-nav="profile">
+                    <span class="nav-icon">👤</span><span>프로필</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- 토스트 -->
+        <div id="toast" class="toast"></div>
+
+        <!-- 확인 모달 -->
+        <div id="modal" class="modal hidden">
+            <div class="modal-card">
+                <h3 id="modal-title"></h3>
+                <p id="modal-body"></p>
+                <div class="modal-actions">
+                    <button id="modal-cancel" class="btn-ghost">취소</button>
+                    <button id="modal-ok" class="btn-primary">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

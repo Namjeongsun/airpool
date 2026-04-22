@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>에어풀 · 공항 출근자를 위한 택시 합승</title>
+  <meta name="description" content="인천·김포공항 출근자를 위한 택시 합승 매칭 서비스. 1인당 최대 75% 요금 절약." />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="landing.css" />
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo">
+        <span class="logo-plane" aria-hidden="true">✈</span>
+        <span>에어풀</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#problem">서비스 소개</a></li>
+        <li><a href="#how">이용 방법</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="../index.html" class="btn btn-primary btn-sm">앱 시작하기</a>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="top">
+    <div class="hero-bg-planes" aria-hidden="true">
+      <svg class="bg-plane bg-plane-1" viewBox="0 0 48 48" fill="none"><path d="M44 22L6 10l4 12-4 12 38-12z" fill="currentColor"/></svg>
+      <svg class="bg-plane bg-plane-2" viewBox="0 0 48 48" fill="none"><path d="M44 22L6 10l4 12-4 12 38-12z" fill="currentColor"/></svg>
+      <svg class="bg-plane bg-plane-3" viewBox="0 0 48 48" fill="none"><path d="M44 22L6 10l4 12-4 12 38-12z" fill="currentColor"/></svg>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-copy reveal">
+        <span class="hero-badge">
+          <span class="dot"></span> 인천 · 김포공항 출근자 전용
+        </span>
+        <h1 class="hero-title">
+          새벽 공항 출근,<br/>이제 <span class="accent">혼자 가지</span> 마세요
+        </h1>
+        <p class="hero-sub">
+          인천·김포공항 출근자를 위한 택시 합승 매칭 서비스.<br/>
+          1인당 <strong>최대 75% 요금 절약</strong>.
+        </p>
+        <div class="hero-ctas">
+          <a href="../index.html" class="btn btn-primary btn-lg">앱 시작하기 →</a>
+          <a href="#how" class="btn btn-ghost btn-lg">어떻게 동작하나요?</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-avatars">
+            <span class="avatar av1">K</span>
+            <span class="avatar av2">P</span>
+            <span class="avatar av3">L</span>
+            <span class="avatar av4">J</span>
+          </div>
+          <span>이미 <strong>3,200+ 공항 근무자</strong>가 이용 중</span>
+        </div>
+      </div>
+
+      <!-- Phone Mockup -->
+      <div class="hero-phone reveal">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-statusbar">
+              <span>9:41</span>
+              <span class="sb-icons">
+                <span class="sb-signal"></span>
+                <span class="sb-battery"></span>
+              </span>
+            </div>
+            <div class="phone-header">
+              <div>
+                <div class="ph-greet">안녕하세요, 승무원님 ✈</div>
+                <div class="ph-title">오늘의 합승</div>
+              </div>
+              <div class="ph-avatar">K</div>
+            </div>
+
+            <div class="phone-search">
+              <div class="ph-search-row">
+                <span class="pin green"></span>
+                <span>강남구</span>
+              </div>
+              <div class="ph-search-divider"></div>
+              <div class="ph-search-row">
+                <span class="pin red"></span>
+                <span>인천 T2</span>
+              </div>
+            </div>
+
+            <div class="phone-list-title">
+              <span>매칭된 합승 3</span>
+              <span class="ph-live"><span class="live-dot"></span> 실시간</span>
+            </div>
+
+            <div class="ride-card highlight">
+              <div class="rc-top">
+                <div class="rc-route">강남구 → 인천 T2</div>
+                <div class="rc-price">₩18,000</div>
+              </div>
+              <div class="rc-mid">
+                <span class="rc-time">🕒 04:30</span>
+                <span class="rc-seats">👥 2/3명</span>
+                <span class="rc-tag">대한항공</span>
+              </div>
+              <div class="rc-bottom">
+                <div class="rc-users">
+                  <span class="mini-av">K</span>
+                  <span class="mini-av">P</span>
+                </div>
+                <button class="rc-join">합승하기</button>
+              </div>
+            </div>
+
+            <div class="ride-card">
+              <div class="rc-top">
+                <div class="rc-route">서초구 → 인천 T1</div>
+                <div class="rc-price">₩21,000</div>
+              </div>
+              <div class="rc-mid">
+                <span class="rc-time">🕒 05:00</span>
+                <span class="rc-seats">👥 1/4명</span>
+              </div>
+            </div>
+
+            <div class="ride-card">
+              <div class="rc-top">
+                <div class="rc-route">송파구 → 김포공항</div>
+                <div class="rc-price">₩12,000</div>
+              </div>
+              <div class="rc-mid">
+                <span class="rc-time">🕒 06:15</span>
+                <span class="rc-seats">👥 3/4명</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-glow"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ STATS ============ -->
+  <section class="stats" id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-num"><span class="counter" data-target="80000">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-label">공항 근무자 (명)</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-num"><span class="stat-prefix">월 </span><span class="counter" data-target="20">0</span><span class="stat-suffix">만원</span></div>
+          <div class="stat-label">평균 절약 금액</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-num"><span class="counter" data-target="3">0</span><span class="stat-suffix">분</span></div>
+          <div class="stat-label">평균 대기 시간</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-num"><span class="counter" data-target="98">0</span><span class="stat-suffix">%</span></div>
+          <div class="stat-label">이용자 만족도</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM ============ -->
+  <section class="problem section" id="problem">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">왜 에어풀인가요</span>
+        <h2 class="section-title">혼자 타는 새벽 택시,<br/>이제 그만.</h2>
+        <p class="section-sub">공항 출근자들이 매일 마주하는 3가지 어려움</p>
+      </div>
+
+      <div class="problem-grid">
+        <article class="problem-card reveal">
+          <div class="problem-icon">💰</div>
+          <h3>매일 편도 8만원,<br/>부담되는 택시비</h3>
+          <p>강남-인천 기준 편도 <strong>8만원대</strong>, 월 출근비만 <strong>200만원</strong>. 월급의 상당 부분이 이동비로 빠져나갑니다.</p>
+        </article>
+        <article class="problem-card reveal">
+          <div class="problem-icon">🕐</div>
+          <h3>대중교통이 없는<br/>새벽 시간</h3>
+          <p><strong>04~05시 출근</strong>, 첫차 전 시간대는 택시 외에 대안이 없습니다. 비싼 요금과 배차 지연이 일상입니다.</p>
+        </article>
+        <article class="problem-card reveal">
+          <div class="problem-icon">🧳</div>
+          <h3>캐리어와 유니폼,<br/>복잡한 이동</h3>
+          <p>대중교통으로 이동 시 <strong>불편함 극대화</strong>. 캐리어와 유니폼은 지하철·버스와 맞지 않습니다.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="how section section-alt" id="how">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">이용 방법</span>
+        <h2 class="section-title">3단계로 간편하게</h2>
+        <p class="section-sub">사원증 인증부터 합승까지, 단 3분</p>
+      </div>
+
+      <div class="how-grid">
+        <div class="how-card reveal">
+          <div class="how-num">01</div>
+          <div class="how-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="12" width="32" height="24" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="22" r="3" stroke="currentColor" stroke-width="2"/><path d="M26 20h8M26 24h8M14 30h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>재직 인증</h3>
+          <p>사원증 또는 재직증명서로 신원을 확인합니다. 공항 근무자만 이용할 수 있어요.</p>
+        </div>
+
+        <div class="how-arrow reveal" aria-hidden="true">→</div>
+
+        <div class="how-card reveal">
+          <div class="how-num">02</div>
+          <div class="how-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="22" cy="22" r="10" stroke="currentColor" stroke-width="2"/><path d="M30 30l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>합승 찾기 또는 등록</h3>
+          <p>출발지, 공항, 시간을 입력하면 조건이 맞는 합승을 자동으로 매칭해드립니다.</p>
+        </div>
+
+        <div class="how-arrow reveal" aria-hidden="true">→</div>
+
+        <div class="how-card reveal">
+          <div class="how-num">03</div>
+          <div class="how-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M8 24c0-8 6-14 14-14s14 6 14 14-6 14-14 14H10l-2-2V24z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="17" cy="24" r="1.5" fill="currentColor"/><circle cx="24" cy="24" r="1.5" fill="currentColor"/><circle cx="31" cy="24" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <h3>같이 타고 비용 분담</h3>
+          <p>앱 내 채팅으로 약속을 잡고, 만나서 합승, 비용은 앱에서 균등 분담합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="features section" id="features">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">기능</span>
+        <h2 class="section-title">공항 근무자를 위해<br/>세심하게 설계했어요</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon">✅</div>
+          <h4>재직 인증된 근무자만</h4>
+          <p>사원증 인증을 통과한 공항 근무자만 이용할 수 있어 신뢰도가 높습니다.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🔍</div>
+          <h4>실시간 자동 매칭</h4>
+          <p>출발지·시간이 비슷한 합승을 실시간으로 찾아드려요.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">💳</div>
+          <h4>투명한 비용 분담</h4>
+          <p>앱에서 자동 계산된 분담금을 확인하고 바로 정산하세요.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🛡</div>
+          <h4>안전한 합승 보장</h4>
+          <p>실명 인증과 평점 시스템으로 안심하고 이용할 수 있어요.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">📍</div>
+          <h4>공항·터미널별 검색</h4>
+          <p>인천 T1/T2, 김포 국내/국제선까지 세분화된 검색을 제공합니다.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">⭐</div>
+          <h4>상호 평점 매너 관리</h4>
+          <p>이용 후 상호 평점으로 좋은 매너를 가진 사용자가 우대받습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TARGET AUDIENCE ============ -->
+  <section class="audience section section-dark" id="audience">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow light">Target</span>
+        <h2 class="section-title">누가 이용하나요?</h2>
+        <p class="section-sub light">인천·김포공항 근무자 누구나</p>
+      </div>
+
+      <div class="audience-grid">
+        <article class="audience-card reveal">
+          <div class="aud-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="7" stroke="currentColor" stroke-width="2"/><path d="M10 40c0-7 6-12 14-12s14 5 14 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 24l6 4 6-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>객실승무원</h4>
+          <p>불규칙한 스케줄,<br/>새벽 픽업</p>
+        </article>
+        <article class="audience-card reveal">
+          <div class="aud-icon">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M12 24l24-12-6 14 6 14-24-12v-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>조종사</h4>
+          <p>국제선 브리핑,<br/>T2 집합</p>
+        </article>
+        <article class="audience-card reveal">
+          <div class="aud-icon">
+            <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="14" width="32" height="22" rx="3" stroke="currentColor" stroke-width="2"/><path d="M18 14V10h12v4M8 22h32" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h4>지상직·운항관리</h4>
+          <p>교대 근무,<br/>새벽 출근</p>
+        </article>
+        <article class="audience-card reveal">
+          <div class="aud-icon">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 6l14 6v10c0 10-6 18-14 20-8-2-14-10-14-20V12l14-6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18 24l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>보안검색·면세점</h4>
+          <p>공항 상주<br/>근무자</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LEGAL & SAFETY ============ -->
+  <section class="legal section" id="legal">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">법과 안전</span>
+        <h2 class="section-title">합법적이고<br/>안전한 합승</h2>
+      </div>
+
+      <div class="legal-grid">
+        <div class="legal-card reveal">
+          <div class="legal-badge">⚖️ 법적 근거</div>
+          <h3>플랫폼 매개 택시 합승, 법적으로 허용</h3>
+          <p>
+            <strong>2022년 개정 여객자동차운수사업법</strong>에 따라 플랫폼을 매개로 한 택시 합승이 공식적으로 허용되었습니다.
+          </p>
+          <ul class="legal-list">
+            <li>반반택시, 카카오T와 동일한 합승 모델</li>
+            <li>국토교통부 가이드라인 준수</li>
+            <li>택시 기사님과 상생하는 구조</li>
+          </ul>
+        </div>
+
+        <div class="legal-card reveal">
+          <div class="legal-badge coral">🛡 안전 장치</div>
+          <h3>사용자를 위한 5단계 안전망</h3>
+          <ul class="legal-list check">
+            <li>공항 근무자 <strong>재직 인증</strong></li>
+            <li>실명제 기반 사용자 확인</li>
+            <li>상호 평점 · 리뷰 시스템</li>
+            <li>24시간 고객지원 센터</li>
+            <li>신고 접수 시 즉시 조치</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="testi section section-alt" id="testi">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">이용 후기</span>
+        <h2 class="section-title">먼저 써본 분들의 이야기</h2>
+      </div>
+
+      <div class="testi-grid">
+        <figure class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <blockquote>월 15만원 절약하고 있어요. 같은 스케줄 크루와 미리 만나서 이야기도 나누고, 출근길이 전혀 외롭지 않아요.</blockquote>
+          <figcaption>
+            <div class="testi-avatar av-navy">김</div>
+            <div>
+              <div class="testi-name">김**아</div>
+              <div class="testi-role">대한항공 객실승무원</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <figure class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <blockquote>새벽 4시 출근에 택시 잡기도 힘들었는데, 이제 전날 예약해두면 돼서 편해요. 비용도 확 줄었습니다.</blockquote>
+          <figcaption>
+            <div class="testi-avatar av-sky">박</div>
+            <div>
+              <div class="testi-name">박**수</div>
+              <div class="testi-role">아시아나 지상직</div>
+            </div>
+          </figcaption>
+        </figure>
+
+        <figure class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <blockquote>김포 근무일에 주기적으로 사용하고 있어요. 같은 직군 동료를 만나는 재미도 있습니다.</blockquote>
+          <figcaption>
+            <div class="testi-avatar av-coral">이</div>
+            <div>
+              <div class="testi-name">이**호</div>
+              <div class="testi-role">제주항공 부기장</div>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq section" id="faq">
+    <div class="container narrow">
+      <div class="section-head reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="section-title">자주 묻는 질문</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item reveal">
+          <summary>
+            <span class="faq-q">택시 합승이 합법인가요?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            네. <strong>2022년 개정 여객자동차운수사업법</strong>에 따라 플랫폼을 매개로 하는 택시 합승이 공식적으로 허용되었습니다. 반반택시, 카카오T 합승과 동일한 법적 근거를 기반으로 운영됩니다.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span class="faq-q">재직 인증은 어떻게 하나요?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            회원가입 시 <strong>사원증 사진</strong> 또는 <strong>재직증명서</strong>를 업로드하면 영업일 기준 24시간 내 인증이 완료됩니다. 인증 정보는 암호화되어 저장되며 인증 후 즉시 폐기됩니다.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span class="faq-q">모르는 사람과 타는 게 불안한데요</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            에어풀은 <strong>공항 근무자 재직 인증</strong>을 통과한 사람만 이용할 수 있어요. 또한 실명제, 상호 평점, 24시간 고객지원으로 안심하고 이용하실 수 있습니다. 여성 전용, 같은 항공사 등 추가 조건도 설정 가능합니다.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span class="faq-q">비용은 어떻게 분담하나요?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            탑승 인원에 맞춰 <strong>자동으로 균등 분담</strong>됩니다. 앱 내 결제를 통해 투명하게 정산되며, 현금 거래가 필요하지 않습니다.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span class="faq-q">합승 매칭이 안 되면 어떡하나요?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            매칭되지 않으면 <strong>별도의 비용이 청구되지 않습니다</strong>. 출발 30분 전까지 매칭이 안 될 경우 푸시 알림을 드리며, 일반 택시 호출 연동 서비스도 제공합니다.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span class="faq-q">여성전용, 같은 항공사 등 조건을 걸 수 있나요?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            네, 가능합니다. 합승 등록 시 <strong>여성 전용</strong>, <strong>같은 항공사</strong>, <strong>같은 직군</strong> 등 다양한 조건을 설정할 수 있어요.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>
+            <span class="faq-q">서비스 이용료가 있나요?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a">
+            현재 <strong>베타 기간 중 이용료는 무료</strong>입니다. 정식 출시 후에는 매칭 건당 소액의 수수료가 부과될 예정이며, 공항 근무자 전용 요금제를 준비 중입니다.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FOOTER SECTION ============ -->
+  <section class="cta-band section section-dark">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <span class="eyebrow light">Ready?</span>
+        <h2 class="cta-title">지금 바로 시작하세요</h2>
+        <p class="cta-sub">3,200명의 공항 근무자가 이미 에어풀과 함께 출근합니다.</p>
+        <div class="cta-btns">
+          <a href="../index.html" class="btn btn-primary btn-lg">웹에서 시작</a>
+          <button class="btn btn-ghost-light btn-lg" disabled>앱 다운로드 준비중</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">✈ 에어풀</div>
+          <p class="footer-desc">
+            인천·김포공항 근무자를 위한<br/>
+            믿을 수 있는 합승 매칭 서비스
+          </p>
+          <p class="footer-company">
+            (주)에어풀 | 대표 홍길동<br/>
+            사업자등록번호 000-00-00000<br/>
+            서울특별시 강남구 테헤란로 000<br/>
+            고객지원 support@airpool.kr
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>서비스</h5>
+          <ul>
+            <li><a href="#problem">서비스 소개</a></li>
+            <li><a href="#how">이용 방법</a></li>
+            <li><a href="#features">주요 기능</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>고객 지원</h5>
+          <ul>
+            <li><a href="#">이용약관</a></li>
+            <li><a href="#">개인정보처리방침</a></li>
+            <li><a href="#">문의하기</a></li>
+            <li><a href="#">공지사항</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>팔로우</h5>
+          <div class="footer-sns">
+            <a href="#" aria-label="Instagram" class="sns">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            </a>
+            <a href="#" aria-label="X" class="sns">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </a>
+            <a href="#" aria-label="Youtube" class="sns">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M10 9.5l5 2.5-5 2.5v-5z" fill="currentColor"/></svg>
+            </a>
+            <a href="#" aria-label="KakaoTalk" class="sns">
+              <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="11" rx="9" ry="7" stroke="currentColor" stroke-width="1.8"/><path d="M9 17l-1 4 4-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bot">
+        <span>© 2026 AirPool, Inc. All rights reserved.</span>
+        <span>Made with ✈ in Seoul</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="landing.js"></script>
+</body>
+</html>

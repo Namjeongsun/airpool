@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a2540">
+    <title>에어풀 · 프로젝트 허브</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(160deg, #0a2540 0%, #1a365d 45%, #2d4a77 100%);
+            min-height: 100vh;
+            color: #0f172a;
+        }
+        .wrap {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+        header {
+            text-align: center;
+            color: #fff;
+            padding: 32px 0 48px;
+        }
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 72px; height: 72px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        .sub {
+            opacity: 0.85;
+            font-size: 15px;
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .stage-badge {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 12px 32px rgba(10,37,64,0.18);
+            transition: transform 0.18s, box-shadow 0.18s;
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 44px rgba(10,37,64,0.24);
+        }
+        .card .icon {
+            font-size: 28px;
+            width: 52px; height: 52px;
+            background: #eff6ff;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 14px;
+        }
+        .card.main .icon { background: #0a2540; color: #fff; }
+        .card.landing .icon { background: #eff6ff; }
+        .card.admin .icon { background: #1a365d; color: #fff; }
+        .card.backend .icon { background: #0f172a; color: #10b981; font-family: monospace; font-size: 22px; }
+        .card.docs .icon { background: #fef3c7; }
+
+        .card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: -0.01em;
+        }
+        .card .desc {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.55;
+            margin-bottom: 14px;
+        }
+        .card .tech {
+            display: inline-block;
+            font-size: 11px;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+        .card .arrow {
+            position: absolute;
+            bottom: 20px; right: 20px;
+            color: #cbd5e1;
+            font-size: 20px;
+            transition: color 0.18s, transform 0.18s;
+        }
+        .card:hover .arrow { color: #3b82f6; transform: translateX(3px); }
+
+        .docs-section {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 18px;
+            padding: 24px;
+            color: #fff;
+        }
+        .docs-section h2 {
+            font-size: 18px;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+        .docs-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 8px;
+        }
+        .docs-list a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.15s;
+        }
+        .docs-list a:hover { background: rgba(255,255,255,0.14); }
+        .docs-list .doc-icon {
+            font-size: 18px;
+            width: 32px; height: 32px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .run-info {
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            color: rgba(255,255,255,0.88);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+        .run-info code {
+            background: rgba(0,0,0,0.35);
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-size: 12px;
+            color: #7dd3fc;
+        }
+        .run-info strong { color: #fff; }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: rgba(255,255,255,0.5);
+            font-size: 12px;
+        }
+
+        @media (max-width: 520px) {
+            h1 { font-size: 28px; }
+            .wrap { padding: 32px 16px 60px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <div class="logo-badge">✈</div>
+            <h1>에어풀 프로젝트</h1>
+            <p class="sub">
+                공항 출근자를 위한 택시 합승 매칭 서비스.<br>
+                프론트엔드, 백엔드, 어드민, 랜딩 페이지, 사업/기술 문서까지 전체 패키지가 이 폴더 안에 있습니다.
+            </p>
+            <div class="stage-badge">🚀 MVP 프로토타입</div>
+        </header>
+
+        <section class="grid">
+            <a href="index.html" class="card main">
+                <div class="icon">✈</div>
+                <h3>메인 앱</h3>
+                <p class="desc">사용자가 실제로 쓰는 모바일 웹앱. 로그인, 합승 찾기/등록, 내 합승, 프로필.</p>
+                <span class="tech">HTML/CSS/JS</span>
+                <span class="tech">PWA</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <a href="landing/index.html" class="card landing">
+                <div class="icon">🎯</div>
+                <h3>마케팅 랜딩</h3>
+                <p class="desc">서비스 소개, 기능, FAQ, 법적 근거를 담은 마케팅 페이지.</p>
+                <span class="tech">Responsive</span>
+                <span class="tech">SVG 애니메이션</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <a href="admin/index.html" class="card admin">
+                <div class="icon">📊</div>
+                <h3>어드민 대시보드</h3>
+                <p class="desc">재직 인증 승인, 사용자·합승 관리, 신고 처리, 분석. (admin/admin1234)</p>
+                <span class="tech">SPA</span>
+                <span class="tech">Chart SVG</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <div class="card backend" style="cursor: default;">
+                <div class="icon">{ }</div>
+                <h3>백엔드 API 서버</h3>
+                <p class="desc">Express + SQLite + JWT. 실제 서비스 전환 시 바로 붙일 수 있는 REST API.</p>
+                <span class="tech">Node.js</span>
+                <span class="tech">SQLite</span>
+                <span class="tech">JWT</span>
+                <div style="margin-top:12px; font-size:12px; color:#94a3b8;">
+                    <code style="background:#f1f5f9; padding:3px 7px; border-radius:5px;">cd backend && npm start</code>
+                </div>
+            </div>
+
+            <a href="docs/business-plan.md" class="card docs">
+                <div class="icon">📄</div>
+                <h3>사업 문서 패키지</h3>
+                <p class="desc">사업계획서, 기술 아키텍처, 법적 검토, 배포 가이드까지 투자자 제출 수준.</p>
+                <span class="tech">Markdown</span>
+                <span class="tech">Mermaid</span>
+                <span class="arrow">→</span>
+            </a>
+        </section>
+
+        <section class="docs-section">
+            <h2>📚 문서 바로가기</h2>
+            <div class="docs-list">
+                <a href="docs/business-plan.md"><span class="doc-icon">💼</span>사업 기획서</a>
+                <a href="docs/tech-architecture.md"><span class="doc-icon">⚙️</span>기술 아키텍처</a>
+                <a href="docs/legal-compliance.md"><span class="doc-icon">⚖️</span>법적 검토</a>
+                <a href="docs/deployment-guide.md"><span class="doc-icon">🚀</span>배포 가이드</a>
+                <a href="README.md"><span class="doc-icon">📖</span>README</a>
+                <a href="backend/README.md"><span class="doc-icon">🔧</span>백엔드 문서</a>
+            </div>
+        </section>
+
+        <div class="run-info">
+            <strong>🛠 백엔드 실행 방법</strong><br>
+            터미널에서 다음 명령을 순서대로 실행:<br>
+            <code>cd airport-carpool/backend</code> → <code>npm install</code> → <code>npm run seed</code> → <code>npm start</code><br>
+            서버가 <code>http://localhost:3001</code>에서 실행됩니다. 로그인 테스트: <code>KE10001</code> / <code>test1234</code>
+        </div>
+
+        <footer>
+            © 2026 AirPool · 공항 출근자를 위한 택시 합승 매칭 서비스 · Prototype
+        </footer>
+    </div>
+</body>
+</html>
